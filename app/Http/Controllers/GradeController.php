@@ -63,7 +63,14 @@ class GradeController extends Controller
         $grade = grade::create($request->only('name'));
         $grade->sections()->attach($request->input('sectionIds'), ['capacity' => $request->input('capacity')]);
     }
-    return $grade;
+    // return $grade;
+        // Fetch the sections for the grade
+        $sections = $grade->sections;
+
+        return [
+            'grade' => $grade,
+            'sections' => $sections
+        ];
 }
 
 
